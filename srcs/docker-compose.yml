@@ -12,16 +12,24 @@ services:
     networks:
       - network_inception
 
-  # nginx:
-    # ...
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - network_inception
 
-  # wordpress:
+  #nginx:
     # ...
 
 #espaço de armazenamento persistente fora do container
 volumes:
   mariadb_data:
-    # ...
+  wordpress_data:
 
 networks:
   network_inception:
