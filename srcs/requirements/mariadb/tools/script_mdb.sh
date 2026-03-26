@@ -1,7 +1,7 @@
 # “execute este script usando o interpretador bash”
 #!/bin/bash
 
-# dá acesso ao banco
+# dá acesso ao banco, agora mysql é dono dessa pasta
 chown -R mysql:mysql /var/lib/mysql
 
 # inicia o mysql, o & significa: “execute em background”, sem & o script para aqui

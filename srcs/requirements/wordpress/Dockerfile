@@ -8,6 +8,7 @@ RUN apt-get update \
     wget \
     tar \
     && mkdir -p /run/php /var/www/html \
+    && chown -R www-data:www-data /run/php /var/www/html \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -16,6 +17,14 @@ RUN apt-get update \
 #mariadb-client: Ferramenta para acessar o banco via terminal (util para testes)
 #wget: Baixar arquivos da internet (baixar o WordPress)
 #tar: extrair .tar.gz (extrair o WordPress baixado)
-#makdir: cria uma pasta que é usada pelo php-fpm, e outra onde o wordpress vai ficar
+#mkdir: cria uma pasta que é usada pelo php-fpm, e outra onde o wordpress vai ficar
+#chown -R www-data:www-data: muda o dono (owner) e o grupo (group) dessas pastas. Por padrão a pasta é root:root, dai mudamos para www-data:www-data por causa do PHP
+
+# define o diretório de trabalho padrão dentro do container
+WORKDIR /var/www/html
+
+COPY --chmod=755 tools/script_wp.sh /usr/local/bin/script_wp.sh
 
 EXPOSE 9000
+
+CMD ["/usr/local/bin/script_wp.sh"]

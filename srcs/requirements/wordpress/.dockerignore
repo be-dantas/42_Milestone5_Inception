@@ -1,0 +1,18 @@
+# arquivos desnecessários
+.git
+.gitignore
+
+# docs
+*.md
+
+# variáveis e segredos (segurança)
+.env
+secrets/
+
+# arquivos temporários
+*.log
+*.tmp
+*.swp
+
+# segurança extra
+docker-compose.yml

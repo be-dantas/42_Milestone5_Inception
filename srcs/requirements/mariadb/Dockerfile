@@ -12,10 +12,10 @@ RUN apt-get update -y \
 #clean: remove arquivos .deb baixados durante a instalacao
 #rm -rf: remove as listas de pacotes baixada no apt-get update, nao serao mais necessarios
 
-COPY ./tools/custom.cnf /etc/mysql/mariadb.conf.d/
+COPY ./tools/custom_mdb.cnf /etc/mysql/mariadb.conf.d/
 
-COPY --chmod=755 ./tools/init.sh /init.sh
+COPY --chmod=755 ./tools/script_mdb.sh /script_mdb.sh
 
 EXPOSE 3306
 
-CMD ["/init.sh"]
+CMD ["script_mdb.sh"]

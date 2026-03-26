@@ -22,6 +22,8 @@ services:
       - wordpress_data:/var/www/html
     networks:
       - network_inception
+    depends_on:
+      - mariadb
 
   #nginx:
     # ...
