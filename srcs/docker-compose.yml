@@ -33,3 +33,4 @@ volumes:
 
 networks:
   network_inception:
+    name: network_inception
