@@ -25,13 +25,37 @@ services:
     depends_on:
       - mariadb
 
-  #nginx:
-    # ...
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - network_inception
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+#ports: porta da minha máquina : porta do container, pois nginx é o unico que precisa de acesso externo
 
 #espaço de armazenamento persistente fora do container
 volumes:
   mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/bedantas/data/mariadb
+      o: bind
+
   wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/bedantas/data/wordpress
+      o: bind
 
 networks:
   network_inception:

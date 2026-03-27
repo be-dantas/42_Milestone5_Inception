@@ -26,4 +26,4 @@ FLUSH PRIVILEGES;
 EOF
 fi
 
-exec mysqld
+wait

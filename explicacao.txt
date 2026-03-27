@@ -1,0 +1,30 @@
+#NGINX = servidor web (entrega o site)
+#WordPress = aplicação (lógica do site)
+#MariaDB = banco de dados (armazena dados)
+#navegador → NGINX → WordPress → MariaDB
+
+#--NGINX: recebe requisições e entrega respostas
+#funções:
+#HTTPS (TLS)
+#encaminhar para PHP
+#servir arquivos
+
+#--WordPress(php-fpm): gera o site dinamicamente
+#funções:
+#processa PHP
+#monta páginas HTML
+#decide o conteúdo
+
+#--MariaDB: guarda dados do site
+#usuários
+#posts
+#senhas
+#configurações
+#etc
+
+#1. usuário acessa site
+#2. NGINX recebe
+#3. NGINX chama WordPress (php-fpm)
+#4. WordPress busca dados no MariaDB
+#5. WordPress gera HTML
+#6. NGINX envia pro navegador
