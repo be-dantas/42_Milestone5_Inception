@@ -11,6 +11,10 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - network_inception
+    secrets:
+      - db_password
+      - db_root_password
+      - dp_user
 
   wordpress:
     build: ./requirements/wordpress
@@ -24,6 +28,9 @@ services:
       - network_inception
     depends_on:
       - mariadb
+    secrets:
+      - db_password
+      - dp_user
 
   nginx:
     build: ./requirements/nginx
@@ -60,3 +67,13 @@ volumes:
 networks:
   network_inception:
     name: network_inception
+
+secrets:
+  db_password:
+    file: ../secrets/db_password.txt
+
+  db_root_password:
+    file: ../secrets/db_root_password.txt
+
+  db_user:
+    file: ../secrets/db_user.txt
