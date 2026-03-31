@@ -1,4 +1,4 @@
-version: "3.8"
+#version: "3.8"
 
 services:
   mariadb:
@@ -14,7 +14,7 @@ services:
     secrets:
       - db_password
       - db_root_password
-      - dp_user
+      - db_user
 
   wordpress:
     build: ./requirements/wordpress
@@ -30,7 +30,7 @@ services:
       - mariadb
     secrets:
       - db_password
-      - dp_user
+      - db_user
 
   nginx:
     build: ./requirements/nginx

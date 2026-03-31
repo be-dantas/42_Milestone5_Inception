@@ -3,7 +3,7 @@ FROM debian:bookworm
 RUN apt-get update -y \
     && apt-get install mariadb-server -y \
     && mkdir -p /run/mysqld \
-    && chown -R mysql:mysql /run/mysqld
+    && chown -R mysql:mysql /run/mysqld \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -12,10 +12,10 @@ RUN apt-get update -y \
 #clean: remove arquivos .deb baixados durante a instalacao
 #rm -rf: remove as listas de pacotes baixada no apt-get update, nao serao mais necessarios
 
-COPY ./tools/custom_mdb.cnf /etc/mysql/mariadb.conf.d/
+COPY tools/custom_mdb.cnf /etc/mysql/mariadb.conf.d/
 
-COPY --chmod=755 ./tools/script_mdb.sh /script_mdb.sh
+COPY --chmod=755 tools/script_mdb.sh /script_mdb.sh
 
 EXPOSE 3306
 
-CMD ["script_mdb.sh"]
+CMD ["/script_mdb.sh"]

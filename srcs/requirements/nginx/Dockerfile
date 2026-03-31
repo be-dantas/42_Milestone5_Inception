@@ -16,7 +16,7 @@ RUN openssl req -x509 -nodes -days 365 \
     -out /etc/nginx/ssl/nginx.crt \
     -subj "/CN=bedantas.42.fr"
 
-COPY ./tools/default.conf /etc/nginx/conf.d/default.conf
+COPY tools/default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 443
 
