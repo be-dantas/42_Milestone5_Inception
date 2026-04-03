@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # vai para a pasta do wordpress
 cd /var/www/html
@@ -11,7 +12,7 @@ if [ ! -f wp-config.php ]; then
     echo "Setting up WordPress..."
 
     wget https://wordpress.org/latest.tar.gz
-    tar -xvf latest.tar.gz
+    tar -xzf latest.tar.gz
 
     mv wordpress/* .
     rm -rf wordpress latest.tar.gz
