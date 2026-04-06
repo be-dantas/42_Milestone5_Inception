@@ -13,21 +13,31 @@ All traffic is served securely over HTTPS using TLS.
 You can control the project using the provided Makefile.
 
 - **Start the project:**
+```bash
   make
+```
   or
+```bash
   make up
+```
   This builds the images and starts the containers in the background.
 
 - **Stop the project:**
+```bash
   make down
+```
   Stops the containers without deleting data.
 
 - **Clean the project:**
+```bash
   make clean
+```
   Removes containers, images, and volumes.
 
 - **Full clean (including local data):**
+```bash
   make fclean
+```
   Deletes all Docker data and local persistent files.
 
 ---
@@ -36,7 +46,9 @@ You can control the project using the provided Makefile.
 
 Open your browser and go to:
 
+```bash
 https://bedantas.42.fr
+```
 
 Since the project uses a self-signed SSL certificate, your browser will show a security warning.
 
@@ -50,7 +62,9 @@ Advanced → Accept the risk / Proceed
 
 To manage the website, access:
 
+```bash
 https://bedantas.42.fr/wp-admin/
+```
 
 Log in using the administrator credentials defined during the WordPress setup.
 
@@ -76,14 +90,20 @@ This includes:
 
 To check if everything is running correctly:
 
+```bash
 docker compose -f srcs/docker-compose.yml ps
+```
 
 or:
 
+```bash
 docker ps
+```
 
 You should see three running containers:
 
+```bash
 nginx
 wordpress
 mariadb
+```
