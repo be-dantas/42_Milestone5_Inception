@@ -128,5 +128,3 @@ make clean  # remove containers, images, volumes
 make fclean # full cleanup (including local data)
 make re     # rebuild everything from scratch
 ```
-
-No bonus services are included.
