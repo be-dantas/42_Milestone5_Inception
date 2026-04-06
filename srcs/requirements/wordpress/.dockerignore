@@ -7,7 +7,6 @@
 
 # variáveis e segredos (segurança)
 .env
-secrets/
 
 # arquivos temporários
 *.log

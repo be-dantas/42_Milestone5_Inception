@@ -9,6 +9,7 @@ RUN apt-get update \
     tar \
     && mkdir -p /run/php /var/www/html \
     && chown -R www-data:www-data /run/php /var/www/html \
+    && sed -i 's|listen = /run/php/php8.2-fpm.sock|listen = 9000|' /etc/php/8.2/fpm/pool.d/www.conf \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

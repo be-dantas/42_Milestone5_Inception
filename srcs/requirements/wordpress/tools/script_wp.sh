@@ -4,9 +4,6 @@ set -e
 # vai para a pasta do wordpress
 cd /var/www/html
 
-DB_USER=$(cat /run/secrets/db_user)
-DB_PASSWORD=$(cat /run/secrets/db_password)
-
 # baixa e configura só na primeira vez
 if [ ! -f wp-config.php ]; then
     echo "Setting up WordPress..."

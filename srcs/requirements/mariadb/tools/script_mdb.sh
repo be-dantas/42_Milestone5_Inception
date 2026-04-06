@@ -15,10 +15,6 @@ for i in {30..0}; do
     sleep 1
 done
 
-DB_USER=$(cat /run/secrets/db_user)
-DB_PASSWORD=$(cat /run/secrets/db_password)
-DB_ROOT_PASSWORD=$(cat /run/secrets/db_root_password)
-
 # só cria se ainda não existir. Usa heredoc -> EOF
 if [ ! -d "/var/lib/mysql/$DB_NAME" ]; then
     mysql -u root << EOF
