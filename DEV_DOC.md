@@ -129,17 +129,4 @@ make fclean # full cleanup (including local data)
 make re     # rebuild everything from scratch
 ```
 
----
-
-## Mandatory Scope
-
-This implementation includes strictly:
-
-- NGINX with HTTPS (TLS)
-- WordPress with PHP-FPM
-- MariaDB database
-- Docker networking
-- Persistent volumes
-- Environment-based configuration
-
 No bonus services are included.
