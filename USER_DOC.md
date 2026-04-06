@@ -87,15 +87,3 @@ You should see three running containers:
 nginx
 wordpress
 mariadb
-
----
-
-## Mandatory Scope
-
-This project includes only the required services:
-
-- NGINX (web server with HTTPS)
-- WordPress (PHP-FPM)
-- MariaDB (database)
-
-No bonus services are included.
