@@ -1,5 +1,5 @@
-# “execute este script usando o interpretador bash”
 #!/bin/bash
+# “execute este script usando o interpretador bash”
 
 # dá acesso ao banco, agora mysql é dono dessa pasta
 chown -R mysql:mysql /var/lib/mysql
