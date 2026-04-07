@@ -21,6 +21,10 @@ RUN apt-get update \
 #mkdir: cria uma pasta que é usada pelo php-fpm, e outra onde o wordpress vai ficar
 #chown -R www-data:www-data: muda o dono (owner) e o grupo (group) dessas pastas. Por padrão a pasta é root:root, dai mudamos para www-data:www-data por causa do PHP
 
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/local/bin/wp
+
 # define o diretório de trabalho padrão dentro do container
 WORKDIR /var/www/html
 

@@ -1,33 +1,47 @@
 #!/bin/bash
 set -e
 
-# vai para a pasta do wordpress
 cd /var/www/html
 
-# baixa e configura só na primeira vez
+# baixa wordpress se não existir
 if [ ! -f wp-config.php ]; then
-    echo "Setting up WordPress..."
 
     wget https://wordpress.org/latest.tar.gz
     tar -xzf latest.tar.gz
-
     mv wordpress/* .
     rm -rf wordpress latest.tar.gz
 
-    # cria arquivo de configuração
     cp wp-config-sample.php wp-config.php
 
-    # conecta com MariaDB
     sed -i "s/database_name_here/$DB_NAME/" wp-config.php
     sed -i "s/username_here/$DB_USER/" wp-config.php
     sed -i "s/password_here/$DB_PASSWORD/" wp-config.php
     sed -i "s/localhost/$DB_HOST/" wp-config.php
 
-    # permissões
     chown -R www-data:www-data /var/www/html
 fi
 
-echo "Starting PHP-FPM..."
+# espera banco subir
+until mysqladmin ping -h"$DB_HOST" --silent; do
+    sleep 2
+done
 
-# mantém container rodando corretamente. Se o container parar: NGINX tenta acessar PHP → falha, WordPress não responde, site quebra 
+# instala wordpress automaticamente
+if ! wp core is-installed --allow-root; then
+
+    wp core install \
+        --url=$DOMAIN_NAME \
+        --title=$WP_TITLE \
+        --admin_user=$WP_ADMIN_USER \
+        --admin_password=$WP_ADMIN_PASSWORD \
+        --admin_email=$WP_ADMIN_EMAIL \
+        --skip-email \
+        --allow-root
+
+    wp user create $WP_USER $WP_USER_EMAIL \
+        --role=author \
+        --user_pass=$WP_USER_PASSWORD \
+        --allow-root
+fi
+
 exec php-fpm8.2 -F
